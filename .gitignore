@@ -1,0 +1,15 @@
+# Model weights and containers (hundreds of GB / multi-GB binaries)
+models/GLM-5.2-GGUF/
+*.sif
+*.gguf
+
+# Nested llama.cpp clone (upstream ebd048f + local glm-dsa draft-mtp port;
+# the local diff is preserved in patches/)
+llama.cpp/
+
+# Runtime state and caches
+logs/
+.hf-cache/
+.apptainer-cache/
+.ascaris/
+cmake/

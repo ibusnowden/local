@@ -1,0 +1,13 @@
+model_list:
+  - model_name: glm-5.2
+    litellm_params:
+      model: openai/glm-5.2
+      api_base: http://itiger06:8006/v1
+      api_key: local
+
+general_settings:
+  master_key: local
+
+litellm_settings:
+  drop_params: true
+  request_timeout: 600
