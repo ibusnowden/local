@@ -48,6 +48,9 @@ GLM-5.2 is 754B params. One node = 8 × 48 GB = **384 GB VRAM**.
 - `router/router.sh` — starts the LiteLLM proxy
 - `test-glm52.sh` — direct OpenAI-compatible smoke test
 - `wire-pi-glm52.sh` — wires the Pi coding agent to the live endpoint
+- `pi/` — portable pi coding-agent setup: the `/goal` evaluator-loop and
+  `web_search`/`web_fetch` extensions, plus `install-pi-setup.sh` to install
+  them on any machine (see `pi/README.md`)
 
 ## One-Time Setup
 
@@ -123,3 +126,22 @@ Wire Pi after the smoke test passes:
 /project/inniang/inference/wire-pi-glm52.sh
 /project/inniang/inference/wire-pi-glm52.sh --set-default
 ```
+
+## Pi Agent Setup (extensions: `/goal`, web search)
+
+`wire-pi-glm52.sh` only points pi at the model endpoint. The agent's extra
+features — the `/goal` autonomous evaluator loop (with the `goal_status`
+tool) and the `web_search` / `web_fetch` tools — live in `pi/extensions/` and
+are installed separately so the same setup can be replicated on other
+machines:
+
+```bash
+# Install the extensions into ~/.pi/agent/extensions/ (global, all projects)
+/project/inniang/inference/pi/install-pi-setup.sh
+
+# Or project-local: ./pi/install-pi-setup.sh --project
+# Dry run:          ./pi/install-pi-setup.sh --list
+```
+
+Then restart pi (or run `/reload`). See [`pi/README.md`](pi/README.md) for the
+full setup, requirements, and the new-machine checklist.
